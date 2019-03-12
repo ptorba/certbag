@@ -16,4 +16,8 @@
     <ProjectReference Include="..\CertBag\CertBag.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="_testCA/ca.pfx" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,21 @@
+@page
+@model CertBag.Pages.Certificates.EditModel
+
+@{
+    ViewData["Title"] = "Edit certificate";
+}
+
+
+<form method="post" class="mt-4">
+    <div asp-validation-summary="ModelOnly" class="text-red font-bold"></div>
+    <input type="hidden" asp-for="Certificate.ID" />
+    <div class="flex flex-col w-1/2">
+        <label asp-for="Certificate.CommonName" class="font-bold"></label>
+        <input asp-for="Certificate.CommonName"/>
+        <span asp-validation-for="Certificate.CommonName" class="text-red font-bold"></span>
+    </div>
+    <div class="mt-4">
+        <input class="btn" type="submit" value="Save" class="btn" />
+        <a asp-page="./Index">Back to List</a>
+    </div>
+</form>

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using CertBag.Models;
+using CertBag.CertLib;
 
 namespace CertBag
 {
@@ -23,6 +24,7 @@ namespace CertBag
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -34,11 +36,15 @@ namespace CertBag
             });
 
 
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<CertDbContext>(options =>
             {
-                options.UseSqlite(Configuration.GetConnectionString("CertDB"));
+                options.UseSqlite(Configuration.GetValue<string>("DATABASE_CONNECTION_STRING"));
             });
+
+            services.AddScoped<ICertificateGenerator, CertificateGenerator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

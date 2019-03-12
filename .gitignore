@@ -285,6 +285,7 @@ node_modules/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+.vscode/
 
 # Paket dependency manager
 .paket/paket.exe

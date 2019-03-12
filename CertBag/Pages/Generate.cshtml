@@ -1,0 +1,39 @@
+@page
+@model CertBag.Pages.Certificates.GenerateModel
+
+@{
+    ViewData["Title"] = "Generate PKCS12";
+}
+
+
+<form method="post" class="mt-4">
+    <div asp-validation-summary="ModelOnly" class="text-red font-bold"></div>
+    <input type="hidden" asp-for="Certificate.ID" />
+    <div class="flex flex-col w-1/2">
+        <div class="my-3">
+            <label asp-for="Certificate.CommonName" class="font-bold">
+                Common Name: 
+            </label>
+            <br/>
+            @Html.DisplayFor(model => model.Certificate.CommonName)
+        </div>
+        <div class="my-3">
+            <label asp-for="CAPassword" class="font-bold">
+                CA Password:
+            </label>
+            <br/>
+            <input type="password" asp-for="CAPassword" />
+        </div>
+        <div class="my-3">
+            <label asp-for="CertPassword" class="font-bold">
+                Exported cert password:
+            </label>
+            <br/>
+            <input type="text" asp-for="CertPassword" />
+        </div>
+    </div>
+    <div class="mt-4">
+        <input class="btn" type="submit" value="Generate" class="btn" />
+        <a asp-page="./Index">Back to List</a>
+    </div>
+</form>

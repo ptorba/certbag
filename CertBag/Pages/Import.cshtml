@@ -1,0 +1,22 @@
+@page
+@model CertBag.Pages.Certificates.ImportModel
+
+@{
+    ViewData["Title"] = "Import PKCS12";
+}
+
+
+<form method="post" enctype="multipart/form-data" class="mt-4">
+    <div asp-validation-summary="All" class="text-red font-bold"></div>
+    <div>
+        <input id="file" type="file" asp-for="FileContent" />
+    </div>
+    <div>
+        <label for="password">Password: </label>
+        <input id="password" type="password" asp-for="CertPassword" />
+    </div>
+    <div class="mt-4">
+        <input class="btn" type="submit" value="Import" class="btn" />
+        <a asp-page="./Index">Back to List</a>
+    </div>
+</form>

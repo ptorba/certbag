@@ -1,0 +1,38 @@
+@page
+@model CertBag.Pages.Certificates.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3 class="mt-5">Are you sure you want to delete this?</h3>
+<div>
+    <h4>Certificate</h4>
+    <hr />
+    <dl class="">
+        <dt class="">
+            @Html.DisplayNameFor(model => model.Certificate.CommonName)
+        </dt>
+        <dd class="">
+            @Html.DisplayFor(model => model.Certificate.CommonName)
+        </dd>
+        <dt class="">
+            @Html.DisplayNameFor(model => model.Certificate.LastGenerationDate)
+        </dt>
+        <dd class="">
+            @Html.DisplayFor(model => model.Certificate.LastGenerationDate)
+        </dd>
+        <dt class="">
+            @Html.DisplayNameFor(model => model.Certificate.ExpiryDate)
+        </dt>
+        <dd class="">
+            @Html.DisplayFor(model => model.Certificate.ExpiryDate)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Certificate.ID" />
+        <input type="submit" value="Delete" class="btn" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

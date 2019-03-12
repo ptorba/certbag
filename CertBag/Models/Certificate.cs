@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CertBag.Models
 {
@@ -7,13 +8,14 @@ namespace CertBag.Models
 
         public int ID { get; set; }
 
+        [Required(ErrorMessage = "Common name is required")]
         public string CommonName { get; set; }
-        public string Email { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime LastGenerationDate { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime ExpiryDate { get; set; }
-
-        public string PrivateKey { get; set; }
-        public string PublicKey { get; set; }
 
     }
 }

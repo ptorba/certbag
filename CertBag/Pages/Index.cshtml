@@ -1,10 +1,51 @@
-﻿@page
-@model IndexModel
+@page
+@model CertBag.Pages.Certificates.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "All certificates";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcomeeeee</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="flex justify-between my-4">
+    <p>
+        <a class="btn" asp-page="Create">Create New</a>
+    </p>
+    <p>
+        <a class="btn" asp-page="Import">Import PFX</a>
+    </p>
 </div>
+<table class="table w-full mt-4">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Certificate[0].CommonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Certificate[0].ExpiryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Certificate[0].LastGenerationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Certificate) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastGenerationDate)
+            </td>
+            <td>
+                <a asp-page="./Generate" asp-route-id="@item.ID">Generate</a> |
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
