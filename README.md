@@ -9,6 +9,7 @@ and then send them via email to some users to allow them access to your other ap
 
 All you need is a CA key and cert packed into a PFX file.
 
+This is a terribly simple app but it solves a specific issue I have at work.
 
 # How to run
 
@@ -29,6 +30,13 @@ docker run -v /ca/path:/mnt/ca -e CA_PATH=/mnt/ca/ca.pfx -p 80:80 ptorba/certbag
 * import existing PKCS#12 certificate metadata
 
 WARNING: Certbag does not store the actual certificate - only the CommonName and expiration date.
+
+# TODO
+
+* Handle multiple Certificate Authorities
+* generate CRL for known certs
+* (Maybe) notifications/reminders about expiring certs via email/slack
+
 
 # Deployment
 
