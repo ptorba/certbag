@@ -24,7 +24,7 @@ namespace CertBag.CertLib
         }
         public X509Certificate2 Generate(string commonName, string caPassword)
         {
-            using (var privateKey = RSA.Create(2048))
+            using (var privateKey = RSA.Create())
             {
                 var request = new CertificateRequest(
                     $"CN={commonName}",
@@ -50,9 +50,13 @@ namespace CertBag.CertLib
                         | X509KeyUsageFlags.NonRepudiation,
                         false));
 
+                var oid = new Oid("clientAuth");
+                var oidCol = new OidCollection();
+                oidCol.Add(oid);
+
                 request.CertificateExtensions.Add(
                     new X509EnhancedKeyUsageExtension(
-                        new AsnEncodedData(Encoding.ASCII.GetBytes("TLS Web Client Authentication")), false));
+                        oidCol, false));
 
                 var serialNumber = generateSerialNumber(commonName);
 
