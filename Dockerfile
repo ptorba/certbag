@@ -5,7 +5,7 @@ RUN npm install
 RUN npx tailwind build styles.css > final.css
 
 
-FROM microsoft/dotnet:sdk AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
@@ -18,7 +18,7 @@ COPY --from=css-build /app/final.css ./wwwroot/css/styles.css
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM microsoft/dotnet:sdk
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
 
 WORKDIR /app
 
