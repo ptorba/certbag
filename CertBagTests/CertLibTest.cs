@@ -28,7 +28,8 @@ namespace CertBagUnitTests
             var commonName = "testName";
             X509Certificate2 cert = certService.Generate(
                     commonName: commonName,
-                    caPassword: "123456"),
+                    caPassword: "123456",
+                    durationDays: 365);
             Assert.NotNull(cert);
             Assert.True(cert.HasPrivateKey);
             Console.WriteLine($"cert: {cert.NotBefore} {cert.NotAfter}");

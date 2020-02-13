@@ -41,6 +41,9 @@ namespace CertBag.Pages.Certificates
         [BindProperty]
         public string CertPassword { get; set; }
 
+        [BindProperty]
+        public int DurationDays { get; set; } = 365;
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -62,7 +65,8 @@ namespace CertBag.Pages.Certificates
             var certificate = await _context.Certificate.FirstAsync(c => c.ID == id);
             var generatedCert = _certGenerator.Generate(
                 commonName: certificate.CommonName,
-                caPassword: CAPassword
+                caPassword: CAPassword,
+                durationDays: DurationDays
             );
             certificate.LastGenerationDate = DateTime.UtcNow;
             certificate.ExpiryDate = generatedCert.NotAfter;

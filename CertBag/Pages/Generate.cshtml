@@ -12,10 +12,17 @@
     <div class="flex flex-col w-1/2">
         <div class="my-3">
             <label asp-for="Certificate.CommonName" class="font-bold">
-                Common Name: 
+                Common Name:
             </label>
             <br/>
             @Html.DisplayFor(model => model.Certificate.CommonName)
+        </div>
+        <div class="my-3">
+            <label asp-for="DurationDays" class="font-bold">
+                Certificate duration (days):
+            </label>
+            <br/>
+            <input asp-for="DurationDays" type="number" />
         </div>
         <div class="my-3">
             <label asp-for="CAPassword" class="font-bold">

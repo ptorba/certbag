@@ -22,7 +22,7 @@ namespace CertBag.CertLib
             var caPath = config.GetValue<string>("CA_PATH");
             _caPfxBytes = File.ReadAllBytes(caPath);
         }
-        public X509Certificate2 Generate(string commonName, string caPassword)
+        public X509Certificate2 Generate(string commonName, string caPassword, int durationDays)
         {
             using (var privateKey = RSA.Create())
             {
@@ -63,7 +63,7 @@ namespace CertBag.CertLib
                 var cert = request.Create(
                     caCert,
                     new DateTimeOffset(DateTime.UtcNow),
-                    new DateTimeOffset(DateTime.UtcNow.AddDays(365)),
+                    new DateTimeOffset(DateTime.UtcNow.AddDays(durationDays)),
                     serialNumber);
 
                 var certWithPrivateKey = cert.CopyWithPrivateKey(privateKey);
