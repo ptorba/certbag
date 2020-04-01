@@ -51,6 +51,7 @@ namespace CertBag
                     logging.AddDebug();
                     logging.AddEventSourceLogger();
                 })
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+		.UseUrls("http://0.0.0.0:5000");
     }
 }
